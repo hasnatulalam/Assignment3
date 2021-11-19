@@ -1,0 +1,44 @@
+/* ------- Google fonts ---------*/
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap'); /*font-family: 'Abril Fatface', cursive;*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap'); /*font-family: 'Poppins', sans-serif;*/
+
+.abril-font {
+  font-family: 'Abril Fatface', cursive;
+  color: #283A5E;
+}
+
+.btn-light-green {
+  background: #00D690 !important;
+  color: #fff !important;
+  border: 0px solid transparent !important;
+  outline: none !important;
+}
+.btn-abril {
+  background: #283A5E!important;
+  color: #fff !important;
+  border: 0px solid transparent !important;
+  outline: none !important;
+}
+.text-light-green {
+  color: #00D690 !important;
+}
+.text-cyan {
+  color: #283A5E;
+}
+.text-abril-white {
+  font-family: 'Abril Fatface', cursive;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

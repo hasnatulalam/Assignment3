@@ -1,0 +1,11 @@
+#cardimg {
+    transform: scale(1);
+    transition: all 1s;
+    height: 300px !important;
+    object-fit: cover;
+    padding: 10px 0px;
+}
+#cardimg:hover {
+    transform: scale(1.1);
+    transition: all 1s;
+}
