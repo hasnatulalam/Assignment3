@@ -4,6 +4,7 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
+  GithubAuthProvider,
   onAuthStateChanged,
   signOut,
   createUserWithEmailAndPassword,
@@ -63,6 +64,13 @@ const useFirebase = () => {
     setIsLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+  const githubProvider = new GithubAuthProvider();
+
+  //sign in with popup provided by google
+  const signInUsingGithub = () => {
+    setIsLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
 
   //logsout the user
   const logOut = () => {
@@ -92,15 +100,16 @@ const useFirebase = () => {
   // check admin role
   useEffect(() => {
     fetch(`https://serene-refuge-00088.herokuapp.com/users/${user?.email}`)
-        .then(res => res.json())
-        .then(data => setAdmin(data.admin))
-}, [user?.email])
+      .then(res => res.json())
+      .then(data => setAdmin(data.admin))
+  }, [user?.email])
 
   return {
     auth,
     user,
     admin,
     signInUsingGoogle,
+    signInUsingGithub,
     signInWithEmailAndPassword,
     logOut,
     isLoading,

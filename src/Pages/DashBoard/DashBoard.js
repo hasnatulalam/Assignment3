@@ -181,7 +181,7 @@ const Dashboard = () => {
                 {admin && (
                   <>
                     <div className="d-flex justify-content-start align-items-center">
-                      <i className="fas fa-user me-2"></i>
+                    <i className="fas fa-user me-2"></i>
                       <NavLink to={`${url}/makeAdmin`}>Make Admin</NavLink>
                     </div>
                     <br />

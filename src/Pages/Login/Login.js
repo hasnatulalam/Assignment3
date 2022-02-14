@@ -6,7 +6,7 @@ import "./login.css";
 import Swal from 'sweetalert2'
 
 const Login = () => {
-  const {auth, signInUsingGoogle, setIsLoading, userEmail, userPassword,setUser, signInWithEmailAndPassword, handleEmail, handlePassword, response, setResponse } = useAuth();
+  const { auth, signInUsingGoogle, signInUsingGithub, setIsLoading, userEmail, userPassword, setUser, signInWithEmailAndPassword, handleEmail, handlePassword, response, setResponse } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const redirect_uri = location.state?.from || "/dashboard";
@@ -14,6 +14,24 @@ const Login = () => {
   //handle google login
   const handleGoogleLogin = () => {
     signInUsingGoogle()
+      .then((result) => {
+        Swal.fire(
+          'LoggedIn Successfully !'
+        )
+        history.push(redirect_uri);
+        saveUser(result?.user?.email)
+      })
+      .catch((error) => {
+        Swal.fire(
+          'Something Went Wrong!'
+        )
+        setResponse(error.message)
+      })
+      .finally(() => setIsLoading(false));
+  };
+  //handle github  login
+  const handleGithubLogin = () => {
+    signInUsingGithub()
       .then((result) => {
         Swal.fire(
           'LoggedIn Successfully !'
@@ -54,7 +72,7 @@ const Login = () => {
   }
 
   const saveUser = (email) => {
-    const user = { email};
+    const user = { email };
     fetch("https://serene-refuge-00088.herokuapp.com/users", {
       method: 'PUT',
       headers: {
@@ -101,9 +119,9 @@ const Login = () => {
                     className="form-control border-0 shadow-none py-2 mt-2 mb-4"
                     style={{ background: "#F8F8F8" }}
                   />
-                {
-                  <p className="text-white fw-semi-bold">{response}</p>
-                }
+                  {
+                    <p className="text-white fw-semi-bold">{response}</p>
+                  }
                   <Button
                     type="submit"
                     className="btn-light-green p-3 fw-bold btn-block w-100 shadow-none"
@@ -119,6 +137,13 @@ const Login = () => {
                     onClick={handleGoogleLogin}
                     className="fab fa-google fa-2x text-light-green me-4 login-icon"
                     title="Google"
+                  ></i>
+                </div>
+                <div className="d-flex justify-content-center">
+                  <i
+                    onClick={handleGithubLogin}
+                    className="fab fa-github fa-2x text-light-green me-4 login-icon"
+                    title="Github"
                   ></i>
                 </div>
                 <span className="text-white fw-semi-bold mt-5">
