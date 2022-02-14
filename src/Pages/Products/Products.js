@@ -25,7 +25,7 @@ const AllProducts = () => {
     setSearchInput(searchValue)
     if (searchInput !== '') {
       const filteredData = productDetails.filter((item) => {
-        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase() || searchInput.toString())
       })
       setFilteredResults(filteredData)
     }
